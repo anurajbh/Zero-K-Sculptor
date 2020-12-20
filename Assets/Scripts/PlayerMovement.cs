@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isSprinting = false;
 
-    public float sprintBoost = 1.5f;
+    public float sprintBoost = 1.5f;//how much sprint should boost speed
 
     public float grav = -9.81f;
 
@@ -20,11 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask groundMask;
 
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.1f;
 
     public float jumpHeight = 40f;
 
-    Vector3 groundVelocity;
+    Vector3 groundVelocity;//jump and fall velocity
     void Start()
     {
         characterController = GetComponent<CharacterController>();
