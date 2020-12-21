@@ -45,7 +45,7 @@ public class PlayerSculpting : MonoBehaviour
 
                 SculptBlock sculptBlock = hitObject.transform.parent.GetComponent<SculptBlock>();
 
-                if (sculptBlock.isNextInPattern(hitObject))
+                if (sculptBlock.IsNextInPattern(hitObject))
                 {
                     sculptBlock.Sculpt(hitObject);
                 } else

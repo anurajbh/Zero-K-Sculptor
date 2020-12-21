@@ -9,8 +9,7 @@ public class SculptBlock : MonoBehaviour
     // on the shard mesh in the pattern.
     private int currentIndex;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -20,13 +19,19 @@ public class SculptBlock : MonoBehaviour
         }
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    public bool isNextInPattern(GameObject hitObject)
+    public bool IsNextInPattern(GameObject hitObject)
     {
         Shard shard = hitObject.GetComponent<Shard>();
         Debug.Log(shard.id + " " + currentIndex);
