@@ -6,4 +6,5 @@ public class PlayerTool : MonoBehaviour
 {
     public float range = 5f;
     public float cooldown = 2f;
+    public float usageTime;
 }

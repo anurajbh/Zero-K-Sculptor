@@ -1087,6 +1087,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3030542586389076578, guid: 547d05fc95838bc46a7dde610d6f861d, type: 3}
+      propertyPath: cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030542586389076578, guid: 547d05fc95838bc46a7dde610d6f861d, type: 3}
+      propertyPath: usageTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3935959545236291484, guid: 547d05fc95838bc46a7dde610d6f861d, type: 3}
       propertyPath: m_Name
       value: PlayerController Variant

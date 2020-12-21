@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
-usingUnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
-public class AttackTrigger :
-    MonoBehavior
+public class AttackTrigger : MonoBehaviour
 {
     Animator anim;
 
@@ -11,15 +10,11 @@ void Start()
 {
     anim = gameObject.GetComponent<Animator>();
 }
-void Update()
+/*void Update()
 {
     if (Input.GetMouseButtonDown(0))
     {
         anim.SetTrigger("Active");
     }
-}
-    void OnMouseDown()
-    {
-
-    }
+}*/
 }
