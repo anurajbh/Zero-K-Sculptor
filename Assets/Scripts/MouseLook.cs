@@ -5,14 +5,17 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
+    float maxMouse;
     public Transform playerBody;
 
     float xRotation = 0;
 
 
-    private void Start()
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        maxMouse = mouseSensitivity;
+        InvokeRepeating("SlowCam", 1f, 1f);
     }
     void Update()
     {
@@ -25,5 +28,11 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+    }
+
+    private void SlowCam()
+    {
+        mouseSensitivity = TimeProgression.Instance.SlowDownGame(mouseSensitivity, maxMouse);
     }
 }

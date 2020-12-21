@@ -14,6 +14,7 @@ public class PlayerSculpting : MonoBehaviour
         cam = Camera.main;
         playerTool = GetComponentInChildren<PlayerTool>();
         anim = GetComponent<Animator>();
+        InvokeRepeating("SlowAnimator", 1f, 1f);
     }
 
     // Update is called once per frame
@@ -54,5 +55,9 @@ public class PlayerSculpting : MonoBehaviour
                 }
             }
         }
+    }
+    void SlowAnimator()
+    {
+        anim.speed = TimeProgression.Instance.SlowDownGame(anim.speed, 1f);
     }
 }

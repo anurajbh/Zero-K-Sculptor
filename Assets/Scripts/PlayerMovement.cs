@@ -6,12 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController characterController;
 
-    public float speed = 12f;
-
+    public float speed = Mathf.Clamp(12f, 0f, 1000f);
+    private float maxSpeed;
     public bool isSprinting = false;
 
-    public float sprintBoost = 1.5f;//how much sprint should boost speed
-
+    public float sprintBoost = Mathf.Clamp(1.5f, 1f, 3f);//how much sprint should boost speed
+    private float maxSprint;
     public float grav = -9.81f;
 
     public bool isGrounded = true;
@@ -22,13 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundDistance = 0.1f;
 
-    public float jumpHeight = 40f;
-
+    public float jumpHeight = Mathf.Clamp(40f,0f,4000f);
+    private float maxJump;
     Vector3 groundVelocity;//jump and fall velocity
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         groundCheck = GameObject.Find("GroundCheck");
+        maxSpeed = speed;
+        maxSprint = sprintBoost;
+        maxJump = jumpHeight;
+        InvokeRepeating("SlowPlayer", 1f, 1f);
     }
 
     // Update is called once per frame
@@ -37,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
         CheckIfSprint();
         MovePlayer();
     }
+
+    private void SlowPlayer()
+    {
+        speed = TimeProgression.Instance.SlowDownGame(speed, maxSpeed);
+        sprintBoost = TimeProgression.Instance.SlowDownGame(sprintBoost, maxSprint);
+        jumpHeight = TimeProgression.Instance.SlowDownGame(jumpHeight, maxJump);
+    }
+
     private void CheckIfSprint()
     {
         if(Input.GetAxisRaw("Fire3")!=0)
