@@ -1499,20 +1499,20 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 25
-  m_Range: 20.1
-  m_SpotAngle: 41.8
-  m_InnerSpotAngle: 21.80208
+  m_Color: {r: 0.6462264, g: 0.9047722, b: 1, a: 1}
+  m_Intensity: 15
+  m_Range: 20.25
+  m_SpotAngle: 59.5
+  m_InnerSpotAngle: 17.2
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: -1
+    m_Resolution: 1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
+    m_Strength: 0.879
+    m_Bias: 0.421
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.18
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
