@@ -47,7 +47,6 @@ public class SculptBlock : MonoBehaviour
     }
     public bool IsLastInPattern(GameObject hitObject)
     {
-        Shard shard = hitObject.GetComponent<Shard>();
-        return shard.id == shards.Count-1;
+        return currentIndex == shards.Count-1;
     }
 }
