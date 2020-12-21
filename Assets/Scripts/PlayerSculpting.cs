@@ -11,6 +11,8 @@ public class PlayerSculpting : MonoBehaviour
     private Animator anim;
     public Image victoryPanel;
     public TimeProgression time;
+    public AudioClip fail;
+    public AudioClip success;
     void Awake()
     {
         cam = Camera.main;
@@ -51,6 +53,7 @@ public class PlayerSculpting : MonoBehaviour
 
                 if (sculptBlock.IsNextInPattern(hitObject))
                 {
+                    GetComponent<AudioSource>().PlayOneShot(success);
                     sculptBlock.Sculpt(hitObject);
                 }
                 else if(sculptBlock.IsLastInPattern(hitObject))
@@ -61,7 +64,7 @@ public class PlayerSculpting : MonoBehaviour
                 }
                 else
                 {
-                    // show ice shards effect
+                    GetComponent<AudioSource>().PlayOneShot(fail);
                 }
             }
         }
