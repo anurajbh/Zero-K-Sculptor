@@ -19,6 +19,7 @@ public class PlayerSculpting : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
         if (Input.GetAxisRaw("Fire1")!=0 && cooldownTimer >= playerTool.cooldown)
+        //if (Input.GetAxisRaw("Fire1") != 0)
         {
             cooldownTimer = 0f;
             UseTool();
@@ -33,7 +34,17 @@ public class PlayerSculpting : MonoBehaviour
         {
             if(hit.collider.tag == "Sculptable")//call whatever we want sculptable blocks to do
             {
-                Destroy(hit.collider.gameObject);
+                GameObject hitObject = hit.collider.gameObject;
+
+                SculptBlock sculptBlock = hitObject.transform.parent.GetComponent<SculptBlock>();
+
+                if (sculptBlock.isNextInPattern(hitObject))
+                {
+                    sculptBlock.Sculpt(hitObject);
+                } else
+                {
+                    // show ice shards effect
+                }
             }
         }
     }
