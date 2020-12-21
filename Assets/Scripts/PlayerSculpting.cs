@@ -2,18 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerSculpting : MonoBehaviour
 {
     public Camera cam;
     public PlayerTool playerTool;//artist tool for sculpting
     private float cooldownTimer = 0f;
     private Animator anim;
-    void Start()
+    public Image victoryPanel;
+    public TimeProgression time;
+    void Awake()
     {
         cam = Camera.main;
         playerTool = GetComponentInChildren<PlayerTool>();
         anim = GetComponent<Animator>();
+        time = GameObject.Find("Time").GetComponent<TimeProgression>();
         InvokeRepeating("SlowAnimator", 1f, 1f);
     }
 
@@ -49,7 +52,14 @@ public class PlayerSculpting : MonoBehaviour
                 if (sculptBlock.IsNextInPattern(hitObject))
                 {
                     sculptBlock.Sculpt(hitObject);
-                } else
+                }
+                else if(sculptBlock.IsLastInPattern(hitObject))
+                {
+                    //victory
+                    Cursor.lockState = CursorLockMode.None;
+                    victoryPanel.gameObject.SetActive(true);
+                }
+                else
                 {
                     // show ice shards effect
                 }
@@ -58,6 +68,6 @@ public class PlayerSculpting : MonoBehaviour
     }
     void SlowAnimator()
     {
-        anim.speed = TimeProgression.Instance.SlowDownGame(anim.speed, 1f);
+        anim.speed = time.SlowDownGame(anim.speed, 1f);
     }
 }

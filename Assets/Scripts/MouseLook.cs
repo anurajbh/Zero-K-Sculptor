@@ -10,12 +10,14 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0;
 
-
+    public TimeProgression time;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         maxMouse = mouseSensitivity;
+        time = GameObject.Find("Time").GetComponent<TimeProgression>();
         InvokeRepeating("SlowCam", 1f, 1f);
+
     }
     void Update()
     {
@@ -33,6 +35,6 @@ public class MouseLook : MonoBehaviour
 
     private void SlowCam()
     {
-        mouseSensitivity = TimeProgression.Instance.SlowDownGame(mouseSensitivity, maxMouse);
+        mouseSensitivity = time.SlowDownGame(mouseSensitivity, maxMouse);
     }
 }

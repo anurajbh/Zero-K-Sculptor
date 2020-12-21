@@ -9,6 +9,7 @@ public class SculptBlock : MonoBehaviour
     // on the shard mesh in the pattern.
     private int currentIndex;
 
+    public List<Shard> shards = new List<Shard>();
     private void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -16,6 +17,7 @@ public class SculptBlock : MonoBehaviour
             GameObject child = transform.GetChild(i).gameObject;
             child.tag = "Sculptable";
             child.AddComponent<MeshCollider>();
+            shards.Add(child.GetComponent<Shard>());
         }
     }
 
@@ -42,5 +44,10 @@ public class SculptBlock : MonoBehaviour
     {
         Destroy(hitObject);
         currentIndex++;
+    }
+    public bool IsLastInPattern(GameObject hitObject)
+    {
+        Shard shard = hitObject.GetComponent<Shard>();
+        return shard.id == shards.Count-1;
     }
 }

@@ -2,25 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeProgression : MonoBehaviour
 {
     public float timeToEnd = 300f;
+    public float timeLeft;
     public float timer = 0f;
-    // Update is called once per frame
-    public static TimeProgression Instance;
+    public Image defeatPanel;
+    public Text timerText;
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        timeLeft = timeToEnd/100f;
+        timerText.text = "Temp : " + timeLeft.ToString() + " K";
+        InvokeRepeating("DecrementTimer", 1f, 1f);
         InvokeRepeating("IncrementTimer", 1f, 1f);
+
+    }
+    void DecrementTimer()
+    {
+        timeLeft = (float)Math.Round(timeLeft -0.01f,2);
+        timerText.text = "Temp : " + timeLeft.ToString() + " K";
     }
     void Update()
     {
@@ -42,6 +44,7 @@ public class TimeProgression : MonoBehaviour
     }
     private void EndGame()
     {
-        Destroy(gameObject);//bring player back to main menu
+        Cursor.lockState = CursorLockMode.None;
+        defeatPanel.gameObject.SetActive(true);
     }
 }

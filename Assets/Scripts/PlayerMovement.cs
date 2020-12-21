@@ -24,14 +24,16 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpHeight = Mathf.Clamp(40f,0f,4000f);
     private float maxJump;
+    public TimeProgression time;
     Vector3 groundVelocity;//jump and fall velocity
-    void Start()
+    void Awake()
     {
         characterController = GetComponent<CharacterController>();
         groundCheck = GameObject.Find("GroundCheck");
         maxSpeed = speed;
         maxSprint = sprintBoost;
         maxJump = jumpHeight;
+        time = GameObject.Find("Time").GetComponent<TimeProgression>();
         InvokeRepeating("SlowPlayer", 1f, 1f);
     }
 
@@ -44,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void SlowPlayer()
     {
-        speed = TimeProgression.Instance.SlowDownGame(speed, maxSpeed);
-        sprintBoost = TimeProgression.Instance.SlowDownGame(sprintBoost, maxSprint);
-        jumpHeight = TimeProgression.Instance.SlowDownGame(jumpHeight, maxJump);
+        speed = time.SlowDownGame(speed, maxSpeed);
+        sprintBoost = time.SlowDownGame(sprintBoost, maxSprint);
+        jumpHeight = time.SlowDownGame(jumpHeight, maxJump);
     }
 
     private void CheckIfSprint()
