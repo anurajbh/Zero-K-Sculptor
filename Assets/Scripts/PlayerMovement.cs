@@ -53,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckIfSprint()
     {
+        if(sprintBoost<1f)
+        {
+            sprintBoost = 1f;
+        }
         if(Input.GetAxisRaw("Fire3")!=0)
         {
             isSprinting = true;

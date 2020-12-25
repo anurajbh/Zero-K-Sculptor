@@ -9,10 +9,11 @@ public class PlayerSculpting : MonoBehaviour
     public PlayerTool playerTool;//artist tool for sculpting
     private float cooldownTimer = 0f;
     private Animator anim;
-    public Image victoryPanel;
+    public Door door;
     public TimeProgression time;
     public AudioClip fail;
     public AudioClip success;
+    public GameObject finalText;
     void Awake()
     {
         cam = Camera.main;
@@ -59,8 +60,9 @@ public class PlayerSculpting : MonoBehaviour
                 else if(sculptBlock.IsLastInPattern(hitObject))
                 {
                     //victory
-                    Cursor.lockState = CursorLockMode.None;
-                    victoryPanel.gameObject.SetActive(true);
+                    sculptBlock.Sculpt(hitObject);
+                    finalText.SetActive(true);
+                    door.victoryCondition = true;
                 }
                 else
                 {

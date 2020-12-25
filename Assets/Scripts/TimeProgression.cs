@@ -13,7 +13,7 @@ public class TimeProgression : MonoBehaviour
     public Text timerText;
     private void Awake()
     {
-        timeLeft = timeToEnd/100f;
+        timeLeft = Mathf.Clamp(timeToEnd / 100f, 0f, 300f);
         timerText.text = "Temp : " + timeLeft.ToString() + " K";
         InvokeRepeating("DecrementTimer", 1f, 1f);
         InvokeRepeating("IncrementTimer", 1f, 1f);
@@ -46,5 +46,6 @@ public class TimeProgression : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         defeatPanel.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
