@@ -22,6 +22,10 @@ public class TimeProgression : MonoBehaviour
     void DecrementTimer()
     {
         timeLeft = (float)Math.Round(timeLeft -0.01f,2);
+        if(timeLeft<0f)
+        {
+            timeLeft = 0f;
+        }
         timerText.text = "Temp : " + timeLeft.ToString() + " K";
     }
     void Update()
