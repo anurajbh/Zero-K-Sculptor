@@ -44,12 +44,17 @@ public class TimeProgression : MonoBehaviour
     public float SlowDownGame(float param, float maxParam)
     {
         param -= (1.0f / timeToEnd) * maxParam;
+        if(param<0f)
+        {
+            param = 0f;
+        }
         return param;
     }
     private void EndGame()
     {
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         defeatPanel.gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 }

@@ -9404,6 +9404,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 3935959544231811277, guid: 547d05fc95838bc46a7dde610d6f861d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3935959544231811279, guid: 547d05fc95838bc46a7dde610d6f861d, type: 3}
       propertyPath: m_TagString
       value: Player
